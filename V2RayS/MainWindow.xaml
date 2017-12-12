@@ -1,0 +1,62 @@
+﻿<Window x:Name="windowV2Ray" x:Class="V2RayS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:V2RayS"
+        mc:Ignorable="d"
+        Title="V2RayS" Height="295" Width="650" MinWidth="650" MinHeight="295" ResizeMode="CanMinimize" Visibility="Hidden">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="81*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="代理模式：" HorizontalAlignment="Left" Margin="136,121,0,0" VerticalAlignment="Top" Height="25" Width="65" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="-0.514,0.435" Grid.Column="1"/>
+        <ComboBox x:Name="ProxyModeComboBox" HorizontalAlignment="Left" Margin="232,121,0,0" VerticalAlignment="Top" Width="60" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="3.783,1.084" Grid.Column="1" IsEnabled="False">
+            <ComboBoxItem Content="HTTP" HorizontalAlignment="Left" Width="118" Selected="ComboBoxItem_Selected"/>
+            <ComboBoxItem Content="Socks" HorizontalAlignment="Left" Width="118" Selected="ComboBoxItem_Selected_1"/>
+        </ComboBox>
+        <Label Content="PAC服务端口：" HorizontalAlignment="Left" Margin="136,91,0,0" VerticalAlignment="Top" Width="89" Height="25" VerticalContentAlignment="Center" RenderTransformOrigin="0.157,0.6" Grid.Column="1"/>
+        <TextBox x:Name="PortTextBox" Height="25" Margin="252,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" RenderTransformOrigin="1.38,0.391" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left"/>
+        <GroupBox Header="V2RayServer" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="239" Width="430" Grid.ColumnSpan="2">
+            <Grid Margin="10,10,-2,-12">
+                <Button x:Name="AddServerButton" Content="+" HorizontalAlignment="Left" Margin="0,181,0,0" VerticalAlignment="Top" Width="50" Height="25" Click="AddServerButton_Click" RenderTransformOrigin="0.096,0.42"/>
+                <Button x:Name="RemoveServerButton" Content="-" HorizontalAlignment="Left" Margin="70,181,0,0" VerticalAlignment="Top" Width="50" Height="25" Click="RemoveServerButton_Click" RenderTransformOrigin="0.136,-0.59"/>
+                <ListBox x:Name="ServerListBox" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" SelectionChanged="ServerListBox_SelectionChanged"/>
+                <Label Content="服务器地址" HorizontalAlignment="Left" Margin="122,1,0,0" VerticalAlignment="Top" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.538,-0.601"/>
+                <Label Content="端口号" HorizontalAlignment="Left" Margin="122,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.231,-0.138" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="User ID" HorizontalAlignment="Left" Margin="122,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.205,-0.605" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="Alter ID" HorizontalAlignment="Left" Margin="122,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.592,-0.346" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="Security" HorizontalAlignment="Left" Margin="122,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.232,-0.864" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="ServerIPTextBox" HorizontalAlignment="Left" Height="23" Margin="192,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="ServerPortTextBox" HorizontalAlignment="Left" Height="23" Margin="192,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="ServerUserIDTextBox" HorizontalAlignment="Left" Height="23" Margin="192,70,0,0" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center" MaxLines="1"/>
+                <TextBox x:Name="ServerAlterIDTextBox" HorizontalAlignment="Left" Height="23" Margin="192,105,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center" MaxLines="1"/>
+                <Button x:Name="UseToV2rayButton" Content="应用到V2Ray" HorizontalAlignment="Left" Margin="272,181,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="UseToV2rayButton_Click"/>
+                <ComboBox x:Name="ServerSecurityComboBox" HorizontalAlignment="Left" Margin="192,140,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.394,-0.281" Height="23">
+                    <ComboBoxItem Content="aes-128-cfb" HorizontalAlignment="Left" Width="198" Selected="ComboBoxItem_Selected_2"/>
+                    <ComboBoxItem Content="aes-128-gcm" HorizontalAlignment="Left" Width="198"/>
+                    <ComboBoxItem Content="chacha20-poly1305" HorizontalAlignment="Left" Width="198"/>
+                    <ComboBoxItem Content="auto" HorizontalAlignment="Left" Width="198"/>
+                    <ComboBoxItem Content="none" HorizontalAlignment="Left" Width="198"/>
+                </ComboBox>
+                <Button x:Name="SaveServerButton" Content="保存" HorizontalAlignment="Left" Margin="192,181,0,0" VerticalAlignment="Top" Width="50" Height="25" Click="SaveServerButton_Click" RenderTransformOrigin="0.551,1.227"/>
+            </Grid>
+        </GroupBox>
+        <CheckBox x:Name="AutoStartCheckBox" Content="开机启动" HorizontalAlignment="Left" Margin="136,10,0,0" VerticalAlignment="Top" Height="23" Width="160" VerticalContentAlignment="Center" Grid.Column="1"/>
+        <CheckBox Content="以PAC服务实现代理规则" HorizontalAlignment="Left" Margin="136,33,0,0" VerticalAlignment="Top" Width="160" Height="23" VerticalContentAlignment="Center" IsChecked="True" IsEnabled="False" Grid.Column="1"/>
+        <Button x:Name="SaveButton" Content="应用" HorizontalAlignment="Left" Margin="136,218,0,0" VerticalAlignment="Top" Width="50" Height="25" Click="SaveButton_Click" RenderTransformOrigin="0.438,-0.38" Grid.Column="1"/>
+        <Button x:Name="ButtonQuit" Content="退出" HorizontalAlignment="Left" Margin="191,218,0,0" VerticalAlignment="Top" Width="50" Height="25" Click="ButtonQuit_Click" RenderTransformOrigin="1.174,0.46" Grid.Column="1"/>
+        <Button x:Name="ShowLogButton" Content="显示日志" HorizontalAlignment="Left" Margin="246,218,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="ShowLogButton_Click" Grid.Column="1"/>
+        <Label Content="V2Ray代理端口：" HorizontalAlignment="Left" Margin="136,61,0,0" VerticalAlignment="Top" Width="101" Height="25" VerticalContentAlignment="Center" Grid.Column="1"/>
+        <TextBox x:Name="V2RayListenPortTextBox" HorizontalAlignment="Left" Height="25" Margin="242,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.48,-0.261" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
+        <Label Content="日志级别：" Grid.Column="1" HorizontalAlignment="Left" Margin="136,151,0,0" VerticalAlignment="Top" Width="65"/>
+        <ComboBox x:Name="ComboBoxLogLevel" Grid.Column="1" HorizontalAlignment="Left" Margin="212,151,0,0" VerticalAlignment="Top" Width="80" Height="25" VerticalContentAlignment="Center">
+            <ComboBoxItem Content="debug" HorizontalAlignment="Left" Width="99"/>
+            <ComboBoxItem Content="info" HorizontalAlignment="Left" Width="99"/>
+            <ComboBoxItem Content="warning" HorizontalAlignment="Left" Width="99"/>
+            <ComboBoxItem Content="error" HorizontalAlignment="Left" Width="99"/>
+            <ComboBoxItem Content="none" HorizontalAlignment="Left" Width="99"/>
+        </ComboBox>
+    </Grid>
+</Window>

@@ -43,11 +43,13 @@ namespace V2RayS
         System.Windows.Forms.ToolStripMenuItem allproxy = new System.Windows.Forms.ToolStripMenuItem();
         System.Windows.Forms.ToolStripMenuItem config = new System.Windows.Forms.ToolStripMenuItem();
         System.Windows.Forms.ToolStripMenuItem logging = new System.Windows.Forms.ToolStripMenuItem();
-        System.Windows.Forms.ToolStripMenuItem reload = new System.Windows.Forms.ToolStripMenuItem();
+        System.Windows.Forms.ToolStripMenuItem reload = new System.Windows.Forms.ToolStripMenuItem();        
+        System.Windows.Forms.ToolStripMenuItem about = new System.Windows.Forms.ToolStripMenuItem();
         System.Windows.Forms.ToolStripMenuItem exit = new System.Windows.Forms.ToolStripMenuItem();
-        
+
         //定义初始变量，各类定义
         WindowLogging Logwindow = new WindowLogging();
+        WindowAbout Aboutwindow = new WindowAbout();
         V2RayProcess v2Ray=new V2RayProcess();
         PacHttpServer Pacsrv = new PacHttpServer();
         SysProxy Proxy = new SysProxy();
@@ -215,7 +217,7 @@ namespace V2RayS
         public void V2RaySNotify()
         {
             //定义notifyicon
-            this.notifyIcon.Text = "V2RayS";
+            this.notifyIcon.Text = "V2RayS V1.0.0.1";
             //this.notifyIcon.Icon = V2RayS.Properties.Resources.V2RayS;
             this.notifyIcon.Visible = true;
             this.notifyIcon.ContextMenuStrip = this.V2rayMenuStrip;
@@ -229,6 +231,7 @@ namespace V2RayS
             this.config,
             this.logging,
             this.reload,
+            this.about,
             this.exit,
             });
 
@@ -250,6 +253,10 @@ namespace V2RayS
             this.exit.Name = "Exit";
             this.exit.Text = "退出";
             this.exit.Click += new System.EventHandler(this.Exit_Click);
+            //关于
+            this.about.Name = "About";
+            this.about.Text = "关于";
+            this.about.Click += new System.EventHandler(this.About_Click);
 
             //PAC
             this.pacitem.Name = "Pac";
@@ -280,6 +287,13 @@ namespace V2RayS
             this.logging.Click += new System.EventHandler(this.logging_Click);
 
         }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            Aboutwindow.Show();
+            
+        }
+
         //check启用代理响应
         public void v2rayuse_Click(object sender, EventArgs e)
         {
@@ -364,6 +378,7 @@ namespace V2RayS
         }
         void Exit_Click(object sender, EventArgs e)
         {
+            Proxy.RemoveProxy();
             this.v2Ray.KillV2ray();
             this.notifyIcon.Dispose();
             this.Pacsrv.StopListening();

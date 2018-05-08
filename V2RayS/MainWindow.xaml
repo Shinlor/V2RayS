@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:V2RayS"
         mc:Ignorable="d"
-        Title="V2RayS" Height="295" Width="650" MinWidth="650" MinHeight="295" ResizeMode="CanMinimize" Visibility="Visible">
+        Title="V2RayS" Height="295" Width="650" MinWidth="650" MinHeight="295" ResizeMode="CanMinimize" Visibility="Hidden">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>

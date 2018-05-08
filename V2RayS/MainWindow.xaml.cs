@@ -56,7 +56,7 @@ namespace V2RayS
         V2RaySconfig XMLConfig = new V2RaySconfig();
         ConfigV2RayJson V2rayJson = new ConfigV2RayJson();
         AutoStart AutoStartReg = new AutoStart();
-        string IP, Port, UserID, AlterID, Security;
+        string IP, Port, UserID, AlterID, Security,Mux;
         string ServerIP, ServerPort,ServerUserID,ServerAlterID,ServerSecurity;//用于存储当前使用的Vrayserver的IP及Port等
         int CurrentUsedServerIndex=-1;//用于存储当前使用的server在listBox中的index
         string ProxyIP = @"127.0.0.1";
@@ -100,8 +100,20 @@ namespace V2RayS
             ServerPort = V2rayJson.ReadServerPort();
             ServerUserID = V2rayJson.ReadServerUserID();
             ServerSecurity = V2rayJson.ReadServerSecurity();
-            ServerAlterID = V2rayJson.ReadServerAlterID();            
+            ServerAlterID = V2rayJson.ReadServerAlterID();
+            Mux = V2rayJson.Readmux();
             PacPort = XMLConfig.ReadPort();//给Port赋值为配置文件中的端口
+
+            //V2ray是否开启mux
+            if (Mux == "True")
+            {
+                MuxCheckBox.IsChecked = true;
+            }
+            else if (Mux == "False")
+            {
+                MuxCheckBox.IsChecked = false;
+            }
+
             //配置文件中是否启用代理
             if (XMLConfig.ReadEnable() == "true")
             {
@@ -217,7 +229,7 @@ namespace V2RayS
         public void V2RaySNotify()
         {
             //定义notifyicon
-            this.notifyIcon.Text = "V2RayS V1.0.0.1";
+            this.notifyIcon.Text = "V2RayS V1.0.0.2";
             //this.notifyIcon.Icon = V2RayS.Properties.Resources.V2RayS;
             this.notifyIcon.Visible = true;
             this.notifyIcon.ContextMenuStrip = this.V2rayMenuStrip;
@@ -404,14 +416,8 @@ namespace V2RayS
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             V2rayJson.Setloglevel(ComboBoxLogLevel.Text);
-            
-            ProxyPort = this.V2RayListenPortTextBox.Text;//更新V2ray监听的端口
-            V2rayJson.SetPort(int.Parse(ProxyPort));//更新V2ray监听的端口入配置文件
-
-            Logwindow.V2RayLog.Text = "Reloaded.." + "\r";
-            this.v2Ray.ReloadV2ray();
             //autostart配置
-            if (AutoStartCheckBox.IsChecked==true)
+            if (AutoStartCheckBox.IsChecked == true)
             {
                 AutoStartReg.SetStart(true, "V2RayS", FILE_FULL_PATH);
                 XMLConfig.WriteAutoStart("true");
@@ -420,7 +426,24 @@ namespace V2RayS
             {
                 AutoStartReg.SetStart(false, "V2RayS", FILE_FULL_PATH);
                 XMLConfig.WriteAutoStart("false");
-            }           
+            }
+
+            //mux配置
+            if (MuxCheckBox.IsChecked == true)
+            {
+                V2rayJson.SetMux(true);
+            }
+            else
+            {
+                V2rayJson.SetMux(false);
+            }
+
+            ProxyPort = this.V2RayListenPortTextBox.Text;//更新V2ray监听的端口
+            V2rayJson.SetPort(int.Parse(ProxyPort));//更新V2ray监听的端口入配置文件
+
+            Logwindow.V2RayLog.Text = "Reloaded.." + "\r";
+            this.v2Ray.ReloadV2ray();
+
         }
 
         private void ServerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -459,6 +482,10 @@ namespace V2RayS
 
         }
 
+        private void ServerUserIDTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
         private void UseToV2rayButton_Click(object sender, RoutedEventArgs e)
         {
             V2rayJson.SetServerAddress(this.ServerIPTextBox.Text);

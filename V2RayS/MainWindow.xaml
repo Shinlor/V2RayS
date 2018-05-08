@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:V2RayS"
         mc:Ignorable="d"
-        Title="V2RayS" Height="295" Width="650" MinWidth="650" MinHeight="295" ResizeMode="CanMinimize" Visibility="Hidden">
+        Title="V2RayS" Height="295" Width="650" MinWidth="650" MinHeight="295" ResizeMode="CanMinimize" Visibility="Visible">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>
@@ -30,7 +30,7 @@
                 <Label Content="Security" HorizontalAlignment="Left" Margin="122,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.232,-0.864" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 <TextBox x:Name="ServerIPTextBox" HorizontalAlignment="Left" Height="23" Margin="192,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center"/>
                 <TextBox x:Name="ServerPortTextBox" HorizontalAlignment="Left" Height="23" Margin="192,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center"/>
-                <TextBox x:Name="ServerUserIDTextBox" HorizontalAlignment="Left" Height="23" Margin="192,70,0,0" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center" MaxLines="1"/>
+                <TextBox x:Name="ServerUserIDTextBox" HorizontalAlignment="Left" Height="23" Margin="192,70,0,0" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center" MaxLines="1" TextChanged="ServerUserIDTextBox_TextChanged"/>
                 <TextBox x:Name="ServerAlterIDTextBox" HorizontalAlignment="Left" Height="23" Margin="192,105,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center" MaxLines="1"/>
                 <Button x:Name="UseToV2rayButton" Content="应用到V2Ray" HorizontalAlignment="Left" Margin="272,181,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="UseToV2rayButton_Click"/>
                 <ComboBox x:Name="ServerSecurityComboBox" HorizontalAlignment="Left" Margin="192,140,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.394,-0.281" Height="23">
@@ -58,5 +58,6 @@
             <ComboBoxItem Content="error" HorizontalAlignment="Left" Width="99"/>
             <ComboBoxItem Content="none" HorizontalAlignment="Left" Width="99"/>
         </ComboBox>
+        <CheckBox x:Name="MuxCheckBox" Content="开启Mux" Grid.Column="1" HorizontalAlignment="Left" Margin="212,188,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

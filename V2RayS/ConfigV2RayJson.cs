@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace V2RayS
 {
@@ -21,12 +22,17 @@ namespace V2RayS
         public void SaveFile()
         {
             string js = Config.ToString();
+            //MessageBox.Show(js);
             System.IO.File.WriteAllText(FILE_PATH, js);
             return;
         }
         public string Readloglevel()
         {
             return Config.log.loglevel;
+        }
+        public string Readmux()
+        {
+            return Config.outbound.mux.enabled;
         }
         public string ReadPort()
         {
@@ -59,6 +65,11 @@ namespace V2RayS
         public void Setloglevel(string loglevel)
         {
             Config.log.loglevel = loglevel;
+            SaveFile();
+        }
+        public void SetMux(bool mux)
+        {
+            Config.outbound.mux.enabled = mux;
             SaveFile();
         }
         public void SetPort(int port)

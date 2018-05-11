@@ -23,5 +23,11 @@ namespace V2RayS
         {
             InitializeComponent();
         }
+
+        private void about_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Shinlor/V2RayS");
+            this.Close();
+        }
     }
 }

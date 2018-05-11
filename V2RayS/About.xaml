@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:V2RayS"
         mc:Ignorable="d"
-        Title="关于" Height="300" Width="300" ResizeMode="NoResize">
+        Title="关于" Height="100" Width="100" ResizeMode="NoResize">
     <Grid>
-        
+        <Button x:Name="about" Content="关于" HorizontalAlignment="Left" Margin="9,26,0,0" VerticalAlignment="Top" Width="75" Click="about_Click"/>
+
     </Grid>
 </Window>

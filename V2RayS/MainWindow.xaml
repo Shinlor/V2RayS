@@ -59,5 +59,6 @@
             <ComboBoxItem Content="none" HorizontalAlignment="Left" Width="99"/>
         </ComboBox>
         <CheckBox x:Name="MuxCheckBox" Content="开启Mux" Grid.Column="1" HorizontalAlignment="Left" Margin="212,188,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="EditPacButton" Content="编辑PAC" Grid.Column="1" HorizontalAlignment="Left" Margin="132,185,0,0" VerticalAlignment="Top" Width="75" Click="EditPacButton_Click"/>
     </Grid>
 </Window>

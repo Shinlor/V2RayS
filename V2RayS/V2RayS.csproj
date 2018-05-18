@@ -134,6 +134,10 @@
     </Compile>
     <Compile Include="AutoStart.cs" />
     <Compile Include="ConfigV2RayJson.cs" />
+    <Compile Include="EditPac.cs" />
+    <Compile Include="WindowEditPacFile.xaml.cs">
+      <DependentUpon>WindowEditPacFile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logging.xaml.cs">
       <DependentUpon>Logging.xaml</DependentUpon>
     </Compile>
@@ -144,6 +148,10 @@
     </Compile>
     <Compile Include="V2RaySconfig.cs" />
     <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowEditPacFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

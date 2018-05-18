@@ -47,9 +47,9 @@ namespace V2RayS
         System.Windows.Forms.ToolStripMenuItem about = new System.Windows.Forms.ToolStripMenuItem();
         System.Windows.Forms.ToolStripMenuItem exit = new System.Windows.Forms.ToolStripMenuItem();
 
-        //定义初始变量，各类定义
+        //定义初始变量，各类定义,初始化各窗口
         WindowLogging Logwindow = new WindowLogging();
-        WindowAbout Aboutwindow = new WindowAbout();
+        WindowAbout Aboutwindow = new WindowAbout();        
         V2RayProcess v2Ray=new V2RayProcess();
         PacHttpServer Pacsrv = new PacHttpServer();
         SysProxy Proxy = new SysProxy();
@@ -486,6 +486,13 @@ namespace V2RayS
         {
 
         }
+
+        private void EditPacButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowEditPacFile Editpacwindow = new WindowEditPacFile();
+            Editpacwindow.Show();
+        }
+
         private void UseToV2rayButton_Click(object sender, RoutedEventArgs e)
         {
             V2rayJson.SetServerAddress(this.ServerIPTextBox.Text);
@@ -496,7 +503,6 @@ namespace V2RayS
             Logwindow.V2RayLog.Text = "";
             this.v2Ray.ReloadV2ray();
             System.Windows.MessageBox.Show("已重新加载V2Ray");
-
         }
 
         private void AddServerButton_Click(object sender, RoutedEventArgs e)
@@ -508,7 +514,6 @@ namespace V2RayS
             ServerAlterIDTextBox.Text = "";
             int i = ServerListBox.Items.Count;
             ServerListBox.SelectedIndex = i-1;
-
         }
 
         private void SaveServerButton_Click(object sender, RoutedEventArgs e)

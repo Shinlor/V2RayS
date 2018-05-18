@@ -1,0 +1,19 @@
+﻿<Window x:Name="EditPacFileWindow" x:Class="V2RayS.WindowEditPacFile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:V2RayS"
+        mc:Ignorable="d"
+        Title="EditPacFile" Height="600" Width="750" ResizeMode="NoResize">
+    <Grid Margin="0,0,2,0">
+        <ListBox x:Name="PACListBox" HorizontalAlignment="Left" Height="549" Margin="10,10,0,0" VerticalAlignment="Top" Width="157" SelectionChanged="PACListBox_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
+        <TextBox x:Name="DomainTextBox" HorizontalAlignment="Left" Height="23" Margin="219,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="461"/>
+        <Button x:Name="AddButton" Content="增加" HorizontalAlignment="Left" Margin="289,49,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click" RenderTransformOrigin="0.8,0.474"/>
+        <Button x:Name="RemoveButton" Content="删除" HorizontalAlignment="Left" Margin="289,85,0,0" VerticalAlignment="Top" Width="75" Click="RemoveButton_Click" RenderTransformOrigin="0.827,0.158"/>
+        <Button x:Name="EditdomainButton" Content="修改" HorizontalAlignment="Left" Margin="482,49,0,0" VerticalAlignment="Top" Width="75" Click="EditdomainButton_Click" RenderTransformOrigin="1.107,0.789"/>
+        <Button x:Name="SaveButton" Content="保存" HorizontalAlignment="Left" Margin="482,85,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click" RenderTransformOrigin="0.827,0.158"/>
+        <TextBlock HorizontalAlignment="Left" Margin="219,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="431" Width="461"><Run Text="PAC域名写法："/><LineBreak/><Run/><LineBreak/><Run Text="1. "/><Run Text="通配符支持。比如 *.example.com/* 实际书写时可省略 * ， 如.example.com/ ， 和 *.example.com/* 效果一样"/><LineBreak/><Run/><LineBreak/><Run Text="2. "/><Run Text="正则表达式支持。以 \ 开始和结束， 如 \[\w]+:\/\/example.com\"/><LineBreak/><Run/><LineBreak/><Run Text="3. "/><Run Text="例外规则 @@ ，如 @@*.example.com/* 满足 @@ 后规则的地址不使用代理"/><LineBreak/><Run/><LineBreak/><Run Text="4. "/><Run Text="匹配地址开始和结尾 | ，如 |http://example.com 、 example.com| 分别表示以 http://example.com 开始和以 example.com 结束的地址"/><LineBreak/><Run/><LineBreak/><Run Text="5. "/><Run Text="|| 标记，如 ||example.com 则 http://example.com 、https://example.com 、 ftp://example.com 等地址均满足条件"/><LineBreak/><Run/><LineBreak/><Run Text="6. 如果不知道上述怎么写，可直接将域名添加上，如:"/><Run Text="example.com"/><LineBreak/><Run/><LineBreak/><Run Text="7. 记得点保存，已保存修改到pac文件"/><Run Text=" "/></TextBlock>
+
+    </Grid>
+</Window>

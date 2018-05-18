@@ -229,7 +229,7 @@ namespace V2RayS
         public void V2RaySNotify()
         {
             //定义notifyicon
-            this.notifyIcon.Text = "V2RayS V1.0.0.2";
+            this.notifyIcon.Text = "V2RayS V1.0.0.3";
             //this.notifyIcon.Icon = V2RayS.Properties.Resources.V2RayS;
             this.notifyIcon.Visible = true;
             this.notifyIcon.ContextMenuStrip = this.V2rayMenuStrip;

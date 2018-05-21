@@ -14,10 +14,18 @@ namespace V2RayS
     {
         public BindingList<string> PAClist = new BindingList<string>();
         public string beforepac;
-        public string afterpac="]"+"\r\n";
+        public string afterpac;
         public void ReadPACList(string FilePath)
         {
             string pac = File.ReadAllText(FilePath);
+            int a = pac.IndexOf("// rules split");
+            int b=pac.LastIndexOf("// rules split");
+            if (a==b)
+            {
+                MessageBox.Show("PAC文件不正常，请检查程序目录下的PAC.txt文件");
+                return;
+            }
+
             //var pacsplit = pac.Split(new char[] { '[', ']' });
             string[] pacsplit = Regex.Split(pac, "// rules split", RegexOptions.IgnoreCase);//使用特殊标记的字符串分割
             beforepac = pacsplit[0];

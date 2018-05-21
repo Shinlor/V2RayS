@@ -48,8 +48,7 @@ namespace V2RayS
         System.Windows.Forms.ToolStripMenuItem exit = new System.Windows.Forms.ToolStripMenuItem();
 
         //定义初始变量，各类定义,初始化各窗口
-        WindowLogging Logwindow = new WindowLogging();
-        WindowAbout Aboutwindow = new WindowAbout();        
+        WindowLogging Logwindow = new WindowLogging();                
         V2RayProcess v2Ray=new V2RayProcess();
         PacHttpServer Pacsrv = new PacHttpServer();
         SysProxy Proxy = new SysProxy();
@@ -64,18 +63,25 @@ namespace V2RayS
         string FILE_PATH;//程序的启动路径
         string FILE_FULL_PATH;//包含文件的名的程序全路径
 
-
         public MainWindow()
         {
+            //检测是否已有其他运行实例，防止多开
+            int alreadyrun= RunningInstance();
+            if (alreadyrun == 1)
+            {
+                System.Windows.MessageBox.Show("已经有一个V2RayS运行了");
+                System.Environment.Exit(1);
+            }
+            //如果已有V2ray.exe运行提示已终止它
+            if (alreadyrun == 2)
+            {
+                System.Windows.MessageBox.Show("检测到已有V2Ray.exe运行并已终止了它");
+            }
+
             InitializeComponent();
-
-
-            
-
             V2RaySNotify();
             v2Ray.OutputDataReceivedEvent += Writelog;//这是委托，用于调用其它类中的方法，V2Ray发生output事件时调用Writelog
             INIT();
-                      
             Pacsrv.SetLisenIP(ProxyIP+@":"+PacPort);
             Pacsrv.SetPacFile(FILE_PATH + @"\pac.txt");
             Pacsrv.StartListening();
@@ -189,8 +195,28 @@ namespace V2RayS
                 XMLConfig.WriteFile();
                 RefreshListBox();
             }
-
-
+        }
+        public int RunningInstance()
+        {
+            System.Diagnostics.Process current = System.Diagnostics.Process.GetCurrentProcess();
+            System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcesses();
+            int running=0;
+            foreach (System.Diagnostics.Process process in processes) //查找相同名称的进程 
+            {
+                if (process.Id != current.Id) //忽略当前进程 
+                { //查找是否有V2RayS以及V2Ray运行 
+                    if (process.ProcessName==current.ProcessName)
+                    {
+                        running = 1;
+                    }
+                    if (process.ProcessName == "v2ray" && running != 1)
+                    {
+                        running = 2;
+                        process.Kill();
+                    }
+                }
+            }
+            return running;
         }
         public void RefreshListBox()
         {
@@ -260,7 +286,7 @@ namespace V2RayS
             this.v2rayuse.CheckState = System.Windows.Forms.CheckState.Checked;
             this.v2rayuse.Name = "v2rayuse";
             this.v2rayuse.Text = "启用代理";
-            this.v2rayuse.Click += new System.EventHandler(this.v2rayuse_Click);
+            this.v2rayuse.Click += new System.EventHandler(this.V2rayuse_Click);
             //Exit
             this.exit.Name = "Exit";
             this.exit.Text = "退出";
@@ -296,18 +322,19 @@ namespace V2RayS
             //状态
             this.logging.Name = "logging";
             this.logging.Text = "状态日志";
-            this.logging.Click += new System.EventHandler(this.logging_Click);
+            this.logging.Click += new System.EventHandler(this.Logging_Click);
 
         }
 
         private void About_Click(object sender, EventArgs e)
         {
+            WindowAbout Aboutwindow = new WindowAbout();
             Aboutwindow.Show();
             
         }
 
         //check启用代理响应
-        public void v2rayuse_Click(object sender, EventArgs e)
+        public void V2rayuse_Click(object sender, EventArgs e)
         {
             if (this.v2rayuse.CheckState == System.Windows.Forms.CheckState.Checked)
             {
@@ -373,7 +400,7 @@ namespace V2RayS
                 XMLConfig.WriteFile();
             }
         }
-        public void logging_Click(object sender, EventArgs e)
+        public void Logging_Click(object sender, EventArgs e)
         {
             Logwindow.Show();
         }
@@ -398,6 +425,7 @@ namespace V2RayS
             //this.Proxy.KillSysProxy();
    
             System.Windows.Application.Current.Shutdown();
+            System.Environment.Exit(0);
         }
         //关闭按钮后隐藏窗口
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)

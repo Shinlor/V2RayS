@@ -37,7 +37,7 @@ namespace V2RayS
             {
                 if (e.NativeErrorCode == ERROR_FILE_NOT_FOUND)
                 {
-                    System.Windows.MessageBox.Show("Nofile,把本程序放入v2ray同目录");
+                    System.Windows.MessageBox.Show("未找到V2Ray.exe文件！");
                 }
 
                 else if (e.NativeErrorCode == ERROR_ACCESS_DENIED)
@@ -55,7 +55,7 @@ namespace V2RayS
             if (!String.IsNullOrEmpty(e.Data))
             {
                 if (e.Data.IndexOf("failed to read config file") > -1)
-                { System.Windows.MessageBox.Show("配置文件错误"); }
+                { System.Windows.MessageBox.Show("V2Ray.json配置文件错误"); }
                 OutputDataReceivedEvent(e.Data);
             }
         }
@@ -95,5 +95,4 @@ namespace V2RayS
         }
 
     }
-
 }

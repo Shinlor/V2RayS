@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:V2RayS"
         mc:Ignorable="d"
-        Title="V2RayS" Height="295" Width="650" MinWidth="650" MinHeight="295" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Visibility="Hidden">
+        Title="V2RayS" Height="295" Width="650" MinWidth="650" MinHeight="295" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Visibility="Visible">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>
@@ -23,11 +23,11 @@
                 <Button x:Name="AddServerButton" Content="+" HorizontalAlignment="Left" Margin="0,181,0,0" VerticalAlignment="Top" Width="50" Height="25" Click="AddServerButton_Click" RenderTransformOrigin="0.096,0.42"/>
                 <Button x:Name="RemoveServerButton" Content="-" HorizontalAlignment="Left" Margin="70,181,0,0" VerticalAlignment="Top" Width="50" Height="25" Click="RemoveServerButton_Click" RenderTransformOrigin="0.136,-0.59"/>
                 <ListBox x:Name="ServerListBox" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="120" SelectionChanged="ServerListBox_SelectionChanged"/>
-                <Label Content="服务器地址" HorizontalAlignment="Left" Margin="122,1,0,0" VerticalAlignment="Top" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.538,-0.601"/>
-                <Label Content="端口号" HorizontalAlignment="Left" Margin="122,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.231,-0.138" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label Content="User ID" HorizontalAlignment="Left" Margin="122,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.205,-0.605" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label Content="Alter ID" HorizontalAlignment="Left" Margin="122,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.592,-0.346" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label Content="Security" HorizontalAlignment="Left" Margin="122,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.232,-0.864" Width="70" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="服务器地址" HorizontalAlignment="Left" Margin="122,1,0,0" VerticalAlignment="Top" Width="70" Height="23" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" RenderTransformOrigin="0.538,-0.601"/>
+                <Label Content="端口号" HorizontalAlignment="Left" Margin="122,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.231,-0.138" Width="70" Height="23" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                <Label Content="User ID" HorizontalAlignment="Left" Margin="122,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.205,-0.605" Width="70" Height="23" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                <Label Content="Alter ID" HorizontalAlignment="Left" Margin="122,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.592,-0.346" Width="70" Height="23" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                <Label Content="Security" HorizontalAlignment="Left" Margin="122,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.232,-0.864" Width="70" Height="23" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                 <TextBox x:Name="ServerIPTextBox" HorizontalAlignment="Left" Height="23" Margin="192,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center"/>
                 <TextBox x:Name="ServerPortTextBox" HorizontalAlignment="Left" Height="23" Margin="192,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center"/>
                 <TextBox x:Name="ServerUserIDTextBox" HorizontalAlignment="Left" Height="23" Margin="192,70,0,0" VerticalAlignment="Top" Width="200" VerticalContentAlignment="Center" MaxLines="1" TextChanged="ServerUserIDTextBox_TextChanged"/>
